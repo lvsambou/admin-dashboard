@@ -1,21 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
+<script>
+import "animate.css"
+
+export default {
+  name: "App",
+  mounted() {
+    const isDarkMode = this.$store.getters.isDarkMode;
+    document.body.style.background = isDarkMode ? "#212c4f" : "#f0f3f5";
+  }
+}
+</script>
+
 <style lang="scss">
+// @import "@/global-styles/colors.scss";
+// @import "@/global-styles/typography.scss";
+
+* {
+  transition: 0.8s cubic-bezier(0.5, 0.8, 0.2, 1);
+}
+
+body {
+  background: $dark-blue;
+}
+
+h1 {
+  @include heading-1;
+}
+p {
+  @include large-text;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: $system-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #709ac4;
-  background-color: black;
+  // text-align: center;
+  color: white;
+  //   border: 1px solid black;
 }
 
 #nav {
@@ -26,8 +52,106 @@
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: white;
     }
   }
 }
+
+
+a {
+  display: inline;
+  margin-left: 10px;
+  color: white;
+}
+h4 {
+  margin: 0;
+  line-height: 34px;
+  font-size: 24px;
+  text-align: center;
+
+  color: #ffffff;
+}
+input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 60px;
+  width: 70%;
+
+  font-size: 20px;
+  color: white;
+  padding-left: 20px;
+  margin-top: 20px;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+button {
+  background: #56ccf2;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border: none;
+
+  height: 60px;
+  width: 70%;
+
+  font-size: 20px;
+  color: white;
+  padding-left: 20px;
+  margin-top: 20px;
+
+  text-align: center;
+}
+a {
+  display: block;
+  line-height: 25px;
+  font-size: 16px;
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+// THEME
+.light-background {
+  background-color: $light-gray;
+}
+.dark-background {
+  background-color: $dark-blue;
+}
+
+.light-text {
+    color: $white;
+}
+.dark-text {
+    color: $black;
+}
+
+.light-field {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+.dark-field {
+    background: rgba(198, 208, 235, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    &::placeholder {
+        color: rgba(0, 0, 0, 0.2);
+    }
+}
+
+.light-link {
+    color: rgba(255, 255, 255, 0.3);
+}
+.dark-link {
+    color: rgba(0, 0, 0, 0.3);
+}
+
 </style>
